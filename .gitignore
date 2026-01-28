@@ -1,0 +1,6 @@
+
+# ignore secrets
+.env
+
+# ignore dependencies
+node_modules/

@@ -1,10 +1,13 @@
+require('dotenv').config();
 const mongoose = require ('mongoose')
 
-const mongoURL = 'mongodb://localhost:27017/hotel'
 
-mongoose.connect(mongoURL)
- .then(() => console.log("MongoDB connected"))
-  .catch(err => console.log(err));
+//const mongoURL = process.env.MONGODB_URL_LOCAL
+console.log('MONGO URL:', process.env.MONGODB_URL); 
+
+mongoose.connect(process.env.MONGODB_URL)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB Server Error', err));
 
   const db=mongoose.connection;
 
@@ -18,6 +21,7 @@ db.on('disconnection',()=>{
 db.on('error',(err)=>{
  console.error(' MongoDB Server Error', err);   //Here they use error in console and also at end err
 });
+
 
 
 module.exports=db;
